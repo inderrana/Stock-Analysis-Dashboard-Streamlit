@@ -11,4 +11,3 @@ streamlit==1.0.0
 tweepy==4.3.0
 yahoo_fin==0.8.9.1
 yfinance==0.1.64
-~atplotlib==3.3.4
