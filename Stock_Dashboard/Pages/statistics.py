@@ -11,7 +11,7 @@ import plotly.express as px
 from IPython.display import display_html
 import plotly.graph_objects as go
 
-int = st.beta_container
+int = st.container
 
 @st.cache
 def stats_clean(ticker):
