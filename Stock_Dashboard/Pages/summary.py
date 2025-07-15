@@ -94,29 +94,33 @@ def run():
     global select_period    
     default_t = ticker_list.index('-')
    
-    ticker = st.sidebar.selectbox("Select a ticker", ticker_list, index = default_t)
-    st.sidebar.text("Select a stock and click submit")
-    button_clicked = st.sidebar.button("Submit")        
+    ticker = st.sidebar.text_input("Enter a ticker symbol", value="")
+    if ticker == "":
+            st.warning("Please enter a valid ticker symbol.")
+    else:
+            st.sidebar.text("Select a stock and click submit")
+            button_clicked = st.sidebar.button("Submit")        
 
-    #set up 2 columns on the page to show the dataframe & the graph side by side
-    c1,c2 = st.columns((3,2))
-    #show dataframe for quote information
-    if button_clicked == False:
-            st.markdown("""
-    <p style="text-align: center;"><span style="font-family: Helvetica;
-     color: rgb(184, 49, 47); font-size: 30px;">**Please select a ticker and click submit**</span></p>
-    """, unsafe_allow_html=True)
-            st.image("https://www.investors.com/wp-content/uploads/2020/06/Stock-bearbullchart-02-adobe.jpg")
-    elif button_clicked == True:
-        with c1:
-            if ticker != '-':
-                st.write("Stock Summary")
-                st.markdown("#")
-                info = get_quote_table(ticker)
-                st.table(info)
+            #set up 2 columns on the page to show the dataframe & the graph side by side
+            c1,c2 = st.columns((3,2))
+            #show dataframe for quote information
+            if button_clicked == False:
+                    st.markdown("""
+            <p style="text-align: center;"><span style="font-family: Helvetica;
+             color: rgb(184, 49, 47); font-size: 30px;">**Please select a ticker and click submit**</span></p>
+            """, unsafe_allow_html=True)
+                    st.image("https://www.investors.com/wp-content/uploads/2020/06/Stock-bearbullchart-02-adobe.jpg")
+            elif button_clicked == True:
+                with c1:
+                    if ticker != '-':
+                        st.write("Stock Summary")
+                        st.markdown("#")
+                        info = get_quote_table(ticker)
+                        st.table(info)
 
-        #show graph
-        with c2:
-            if ticker != '-':
-                st.write('Adjusted close price')
-                st.plotly_chart(plot1(ticker))            
+                #show graph
+                with c2:
+                    if ticker != '-':
+                        st.write('Adjusted close price')
+                        st.plotly_chart(plot1(ticker))            
+        
