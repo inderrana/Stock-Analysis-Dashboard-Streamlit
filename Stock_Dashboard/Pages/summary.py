@@ -89,7 +89,7 @@ def run():
 # Add selection box
     global ticker    
     global select_period    
-    default_t = ticker_list.index("AAPL")
+    default_t = ticker_list.index("")
     ticker = st.sidebar.selectbox("Select a ticker", ticker_list, index = default_t)
     st.sidebar.text("Select a stock and click submit")
     button_clicked = st.sidebar.button("Submit")        
